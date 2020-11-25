@@ -4,9 +4,11 @@ import random
 import wikipedia
 import time
 
-alltext = wikipedia.summary('python programming')
+#alltext = wikipedia.summary('python programming')
+#alltext = alltext.split()
 
-alltext = alltext.split()
+alltext = ['หมา','กา','ไก่','แมว','ลิง','สิงโต','เป็ด','จิงโจ้']
+
 print(alltext)
 
 GUI = Tk()
@@ -67,7 +69,13 @@ def digitalclock():
 		label.after(1000, digitalclock)
 		if count == alltime:
 			count = 0
-			v_vocab.set('Game Over\nWaiting 10 second\nYou Got {}! '.format(score))
+			if score > 10:
+				extratext = 'อะไรจะเทพเบอร์นี้'
+			elif score > 5:
+				extratext = 'ก็พอได้นะจ๊ะ'
+			else:
+				extratext = 'กลับไปฝึกใหม่ ไป๊!!! 5555'
+			v_vocab.set('จบเกมนะจ๊ะ\nรอ 10 วินาทีเพื่อเล่นใหม่\nคุณได้ทั้งหมด {} คะแนน!\n{}'.format(score,extratext))
 			score = 0
 			v_score.set(score)
 			newgame = True
@@ -80,7 +88,7 @@ FONT1 = ('Angsana New',30)
 L1 = Label(GUI,text='ข้อความ',font=FONT1).pack()
 
 v_vocab = StringVar()
-L2 = Label(GUI,textvariable=v_vocab,font=FONT1).pack()
+L2 = Label(GUI,textvariable=v_vocab,font=FONT1,foreground='green').pack()
 
 v_score = StringVar()
 v_score.set(0)
